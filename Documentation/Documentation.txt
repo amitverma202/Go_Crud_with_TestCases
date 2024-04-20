@@ -1,0 +1,137 @@
+API Documentation
+=================
+
+1. Overview
+-----------
+This API provides endpoints to manage a library system, allowing users to perform CRUD operations on books.
+
+#Base URL
+The base URL for accessing the API is `http://localhost:8080`.
+
+#Authentication
+This API does not require authentication.
+
+#Endpoints
+-----------
+
+## Get All Books
+- **Endpoint:** `GET /books`
+- **Description:** Retrieves a list of all books in the library.
+- **Request Parameters:** None
+- **Example Request:**
+  ```
+  GET http://localhost:8080/books
+  ```
+- **Example Response:**
+  ```json
+  [
+      {
+          "id": 1,
+          "title": "The God of Small Things",
+          "author": "Arundhati Roy"
+      },
+      {
+          "id": 2,
+          "title": "Midnight's Children",
+          "author": "Salman Rushdie"
+      },
+  ]
+
+
+## Add a Book
+- **Endpoint:** `POST /books/add`
+- **Description:** Adds a new book to the library.
+- **Request Body:**
+  ```json
+  {
+      "title": "New Book Title",
+      "author": "Author Name"
+  }
+
+**Example Request:**
+
+  POST http://localhost:8080/books/add
+  Content-Type: application/json
+
+  {
+      "title": "The Guide",
+      "author": "R. K. Narayan"
+  }
+
+**Example Response:**
+  ```json
+  {
+      "id": 7,
+      "title": "The Guide",
+      "author": "R. K. Narayan"
+  }
+  ```
+
+## Update a Book
+- **Endpoint:** `PUT /books/update/{id}`
+- **Description:** Updates details of a book with the specified ID.
+- **Request Parameters:**
+  - `{id}`: ID of the book to update
+- **Request Body:**
+  ```json
+  {
+      "title": "Updated Title",
+      "author": "Updated Author"
+  }
+  
+**Example Request:**
+
+  PUT http://localhost:8080/books/update/6
+  Content-Type: application/json
+
+  {
+      "title": "Revised Title",
+      "author": "New Author"
+  }
+
+**Example Response:**
+  ```json
+  {
+      "id": 6,
+      "title": "Revised Title",
+      "author": "New Author"
+  }
+
+## Delete a Book
+**Endpoint:** `DELETE /books/delete/{id}`
+**Description:** Deletes the book with the specified ID.
+**Request Parameters:**
+  - `{id}`: ID of the book to delete
+**Example Request:**
+  ```
+DELETE http://localhost:8080/books/delete/5
+
+**Example Response:**
+
+Book with ID 5 deleted successfully
+  
+
+## Status Codes
+- `200 OK`: Successful request
+- `201 Created`: Resource created successfully
+- `400 Bad Request`: Invalid request or request body
+- `404 Not Found`: Resource not found
+- `500 Internal Server Error`: Server error occurred
+
+## Error Responses
+- When an error occurs, the response body will contain an error message describing the issue.
+
+## Rate Limiting
+This API does not impose any rate limiting restrictions.
+
+## Pagination
+Pagination is not implemented in this version of the API.
+
+## Versioning
+This API does not currently support versioning.
+
+## Additional Notes
+- This API is designed for managing a simple library system.
+- Data is stored in memory and will be lost when the server is restarted.
+
+This documentation outlines the endpoints, request/response formats, status codes, and additional information about the API.
